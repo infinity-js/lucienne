@@ -4,31 +4,31 @@ import {
   IsDateString,
   IsObject,
   IsString,
-  IsUUID,
   ValidateNested,
 } from 'class-validator';
-import { PhoneNumber } from './value-objects';
+import { PhoneNumberData } from './value-objects';
 
 export class UserData {
-  @IsUUID()
+  @IsString()
   id!: string;
 
   @IsString()
-  name!: string;
+  firstName!: string;
 
-  @Type(() => PhoneNumber)
+  @IsString()
+  lastName!: string;
+
+  @Type(() => PhoneNumberData)
   @ValidateNested()
   @IsObject()
-  phoneNumber!: PhoneNumber;
+  phoneNumber!: PhoneNumberData;
 
   @IsString()
   password!: string;
 
-  @IsString()
   @IsDateString()
   createdAt!: string;
 
-  @IsString()
   @IsDateString()
   updatedAt!: string;
 }
