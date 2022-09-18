@@ -35,7 +35,9 @@
       1,
       "always",
       [
-        "user"
+        "user",
+        "common",
+        "app"
       ]
     ]
   }
