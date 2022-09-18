@@ -1,4 +1,4 @@
-import { IsBoolean, IsString } from 'class-validator';
+import { IsBoolean, IsString } from '@infinity-js/core';
 
 export class PhoneNumberData {
   @IsString()

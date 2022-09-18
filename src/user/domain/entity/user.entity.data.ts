@@ -1,11 +1,11 @@
-import { OmitType } from '@nestjs/mapped-types';
-import { Type } from 'class-transformer';
 import {
   IsDateString,
   IsObject,
   IsString,
+  OmitType,
+  Type,
   ValidateNested,
-} from 'class-validator';
+} from '@infinity-js/core';
 import { PhoneNumberData } from './value-objects';
 
 export class UserData {

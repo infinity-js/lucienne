@@ -1,11 +1,11 @@
-import { validateEntity } from '@infinity-js/core';
+import { uuidV4, validateEntity } from '@infinity-js/core';
 import { CreateUserDTO, UserData } from './user.entity.data';
 import { PhoneNumber } from './value-objects';
-import { v4 as uuidV4 } from 'uuid';
 
 export class User {
   private _id: string;
-  private _name: string;
+  private _firstName: string;
+  private _lastName: string;
   private _phoneNumber: PhoneNumber;
   private _password: string;
   private _createdAt: Date;
@@ -13,9 +13,10 @@ export class User {
 
   private constructor(params: UserData) {
     this._id = params.id;
-    this._name = params.name;
-    this._phoneNumber = params.phoneNumber;
+    this._firstName = params.firstName;
+    this._lastName = params.lastName;
     this._password = params.password;
+    this._phoneNumber = PhoneNumber.instantiate(params.phoneNumber);
     this._createdAt = new Date(params.createdAt);
     this._updatedAt = new Date(params.updatedAt);
   }
@@ -24,8 +25,12 @@ export class User {
     return this._id;
   }
 
-  get name(): string {
-    return this._name;
+  get firstName(): string {
+    return this._firstName;
+  }
+
+  get lastName(): string {
+    return this._lastName;
   }
 
   get phoneNumber(): PhoneNumber {
@@ -49,14 +54,15 @@ export class User {
 
     return User.instantiate({
       id: uuidV4(),
-      name: params.name,
+      firstName: params.firstName,
+      lastName: params.lastName,
       password: params.password,
-      phoneNumber: PhoneNumber.instantiate({
+      phoneNumber: {
         ddd: params.phoneNumber.ddd,
         ddi: params.phoneNumber.ddi,
         number: params.phoneNumber.number,
         isVerified: false,
-      }),
+      },
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     });
@@ -70,8 +76,9 @@ export class User {
   toJSON(): UserData {
     return {
       id: this.id,
-      name: this.name,
-      phoneNumber: this.phoneNumber,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      phoneNumber: this.phoneNumber.toJSON(),
       password: this.password,
       createdAt: this.createdAt.toISOString(),
       updatedAt: this.updatedAt.toISOString(),
