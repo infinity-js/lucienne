@@ -4,7 +4,7 @@ import { UserPhoneNumberData } from 'src/user/domain/entity/value-objects';
 import { UserRepository } from 'src/user/domain/repository/user.repository';
 
 export class UserRepositoryServiceMock implements UserRepository {
-  database: User[] = [];
+  private database: User[] = [];
 
   async create(entity: User): Promise<void> {
     this.database.push(entity);
@@ -42,5 +42,9 @@ export class UserRepositoryServiceMock implements UserRepository {
     }
 
     return this.database;
+  }
+
+  async clean(): Promise<void> {
+    this.database = [];
   }
 }
