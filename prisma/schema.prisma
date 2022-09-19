@@ -32,5 +32,6 @@ model User_Phone_Number {
 
   User User? @relation(fields: [userId], references: [id], onDelete: Cascade)
 
+  @@unique([ddi, ddd, number])
   @@map(name: "user_phone_number")
 }
