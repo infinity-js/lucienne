@@ -1,5 +1,5 @@
-import { User } from './user.entity';
 import { faker } from '@faker-js/faker';
+import { User } from 'src/user/domain/entity/user.entity';
 
 export const makeFakeUserEntity = (): User => {
   return User.instantiate({

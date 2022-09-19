@@ -1,15 +1,15 @@
 import { faker } from '@faker-js/faker';
 import { Test, TestingModule } from '@nestjs/testing';
 import { HashingService } from 'src/common/hashing/hashing.service';
-import { HashingServiceMock } from 'src/common/hashing/__mocks__/hashing.service.mock';
 import { User } from 'src/user/domain/entity/user.entity';
-import { makeFakeUserEntity } from 'src/user/domain/entity/user.entity.spec';
-import { UserRepositoryServiceMock } from 'src/user/domain/repository/__mocks__/user.repository.mock';
 import { UserRepositoryService } from 'src/user/infra/repository/user.repository.service';
 import {
   CreateUserService,
   CreateUserServiceParamsDTO,
-} from './create.service';
+} from 'src/user/services/create.service';
+import { makeFakeUserEntity } from '../domain/user.entity.spec';
+import { HashingServiceMock } from 'test/mocks/hashing.service.mock';
+import { UserRepositoryServiceMock } from 'test/mocks/user.repository.mock';
 
 describe('CreateService', () => {
   let service: CreateUserService;
