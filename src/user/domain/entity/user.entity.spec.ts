@@ -123,7 +123,6 @@ describe('User entity', () => {
         phoneNumber: {
           ddd: faker.phone.number('##'),
           ddi: faker.phone.number('##'),
-          isVerified: faker.datatype.boolean(),
           number: faker.phone.number('#########'),
         },
         password: faker.internet.password(),

@@ -1,12 +1,12 @@
 import { uuidV4, validateEntity } from '@infinity-js/core';
 import { CreateUserDTO, UserData } from './user.entity.data';
-import { PhoneNumber } from './value-objects';
+import { UserPhoneNumber } from './value-objects';
 
 export class User {
   private _id: string;
   private _firstName: string;
   private _lastName: string;
-  private _phoneNumber: PhoneNumber;
+  private _phoneNumber: UserPhoneNumber;
   private _password: string;
   private _createdAt: Date;
   private _updatedAt: Date;
@@ -16,7 +16,7 @@ export class User {
     this._firstName = params.firstName;
     this._lastName = params.lastName;
     this._password = params.password;
-    this._phoneNumber = PhoneNumber.instantiate(params.phoneNumber);
+    this._phoneNumber = UserPhoneNumber.instantiate(params.phoneNumber);
     this._createdAt = new Date(params.createdAt);
     this._updatedAt = new Date(params.updatedAt);
   }
@@ -33,7 +33,7 @@ export class User {
     return this._lastName;
   }
 
-  get phoneNumber(): PhoneNumber {
+  get phoneNumber(): UserPhoneNumber {
     return this._phoneNumber;
   }
 

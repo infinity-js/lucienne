@@ -1,13 +1,13 @@
 import { validateEntity } from '@infinity-js/core';
-import { PhoneNumberData } from './phone-number.value-object.data';
+import { UserPhoneNumberData } from './phone-number.value-object.data';
 
-export class PhoneNumber {
+export class UserPhoneNumber {
   private _ddd: string;
   private _ddi: string;
   private _number: string;
   private _isVerified: boolean;
 
-  private constructor(params: PhoneNumberData) {
+  private constructor(params: UserPhoneNumberData) {
     this._ddd = params.ddd;
     this._ddi = params.ddi;
     this._number = params.number;
@@ -30,16 +30,16 @@ export class PhoneNumber {
     return this._isVerified;
   }
 
-  static instantiate(params: PhoneNumberData): PhoneNumber {
-    PhoneNumber.Validate(params);
-    return new PhoneNumber(params);
+  static instantiate(params: UserPhoneNumberData): UserPhoneNumber {
+    UserPhoneNumber.Validate(params);
+    return new UserPhoneNumber(params);
   }
 
-  static Validate(params: PhoneNumberData): void {
-    validateEntity(PhoneNumberData, params);
+  static Validate(params: UserPhoneNumberData): void {
+    validateEntity(UserPhoneNumberData, params);
   }
 
-  toJSON(): PhoneNumberData {
+  toJSON(): UserPhoneNumberData {
     return {
       ddd: this.ddd,
       ddi: this.ddi,
