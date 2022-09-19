@@ -6,7 +6,7 @@ import {
   Type,
   ValidateNested,
 } from '@infinity-js/core';
-import { PhoneNumberData } from './value-objects';
+import { CreateUserPhoneNumberDTO, UserPhoneNumberData } from './value-objects';
 
 export class UserData {
   @IsString()
@@ -18,10 +18,10 @@ export class UserData {
   @IsString()
   lastName!: string;
 
-  @Type(() => PhoneNumberData)
+  @Type(() => UserPhoneNumberData)
   @ValidateNested()
   @IsObject()
-  phoneNumber!: PhoneNumberData;
+  phoneNumber!: UserPhoneNumberData;
 
   @IsString()
   password!: string;
@@ -37,4 +37,7 @@ export class CreateUserDTO extends OmitType(UserData, [
   'id',
   'createdAt',
   'updatedAt',
-] as const) {}
+  'phoneNumber',
+] as const) {
+  phoneNumber!: CreateUserPhoneNumberDTO;
+}

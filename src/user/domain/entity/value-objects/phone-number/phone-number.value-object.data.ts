@@ -1,6 +1,6 @@
-import { IsBoolean, IsString } from '@infinity-js/core';
+import { IsBoolean, IsString, OmitType } from '@infinity-js/core';
 
-export class PhoneNumberData {
+export class UserPhoneNumberData {
   @IsString()
   ddd!: string;
   @IsString()
@@ -10,3 +10,7 @@ export class PhoneNumberData {
   @IsBoolean()
   isVerified!: boolean;
 }
+
+export class CreateUserPhoneNumberDTO extends OmitType(UserPhoneNumberData, [
+  'isVerified',
+]) {}
