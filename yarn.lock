@@ -569,10 +569,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@infinity-js/core@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@infinity-js/core/-/core-1.1.2.tgz#cadef3c4b4e84545c77656819838a052ccdd2863"
-  integrity sha512-xI4R5A8GSb9TBz5o0wuW49+7u+Wpb/1d5x4tQCoIx70WdwC0eRewaHueyu5OIZVIjy/yC9xqnbX05AbCNTDjaQ==
+"@infinity-js/core@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@infinity-js/core/-/core-1.1.3.tgz#e86cec3aafe2409a31d30c5036e27932b1380be3"
+  integrity sha512-QILLYu91+4AFvo8UMYOVXuGHbwab9d2RjZ425DmoWm8k4GQ1msj4zXGD9CgJ0ik5tMdbv8ibDBYwEdQAx8HhXQ==
   dependencies:
     "@nestjs/mapped-types" "1.1.0"
     class-transformer "0.5.1"
