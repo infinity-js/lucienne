@@ -11,6 +11,9 @@ const mockPrisma = {
     findUnique: jest.fn(),
     findMany: jest.fn(),
   },
+  user_Phone_Number: {
+    findUnique: jest.fn(),
+  },
 };
 
 const userEntity = makeFakeUserEntity();
@@ -38,6 +41,10 @@ describe('UserRepositoryService', () => {
     ...prismaUser,
     User_Phone_Number: prismaUserPhoneNumber,
   };
+  const fakeUserByPhoneReturn = {
+    ...prismaUserPhoneNumber,
+    User: prismaUser,
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -50,8 +57,10 @@ describe('UserRepositoryService', () => {
     service = module.get<UserRepositoryService>(UserRepositoryService);
 
     mockPrisma.user.findUnique.mockResolvedValue(fakeUserReturn);
-
     mockPrisma.user.findMany.mockResolvedValue([fakeUserReturn]);
+    mockPrisma.user_Phone_Number.findUnique.mockResolvedValue(
+      fakeUserByPhoneReturn,
+    );
   });
 
   it('should be defined', () => {
@@ -107,19 +116,46 @@ describe('UserRepositoryService', () => {
     expect(mockPrisma.user.update).toBeCalledWith(params);
   });
 
-  it('should call prisma.findUnique with params', async () => {
-    const params: Prisma.UserFindUniqueArgs = {
-      where: {
-        id: userEntity.id,
-      },
-    };
+  describe('should call prisma.findUnique with params', () => {
+    it('at findOne method', async () => {
+      const params: Prisma.UserFindUniqueArgs = {
+        where: {
+          id: userEntity.id,
+        },
+      };
 
-    await service.findOne(params);
-    expect(mockPrisma.user.findUnique).toBeCalledWith({
-      ...params,
-      include: {
-        User_Phone_Number: true,
-      },
+      await service.findOne(params);
+      expect(mockPrisma.user.findUnique).toBeCalledWith({
+        ...params,
+        include: {
+          User_Phone_Number: true,
+        },
+      });
+    });
+
+    it('at findOneByPhoneNumber method', async () => {
+      const params: Prisma.User_Phone_NumberFindUniqueArgs = {
+        where: {
+          ddi_ddd_number: {
+            ddd: userEntity.phoneNumber.ddd,
+            ddi: userEntity.phoneNumber.ddi,
+            number: userEntity.phoneNumber.number,
+          },
+        },
+      };
+
+      await service.findOneByPhoneNumber({
+        ddd: userEntity.phoneNumber.ddd,
+        ddi: userEntity.phoneNumber.ddi,
+        number: userEntity.phoneNumber.number,
+      });
+
+      expect(mockPrisma.user_Phone_Number.findUnique).toBeCalledWith({
+        ...params,
+        include: {
+          User: true,
+        },
+      });
     });
   });
 
@@ -139,19 +175,47 @@ describe('UserRepositoryService', () => {
     });
   });
 
-  it("should return undefined if user doesn't exist", async () => {
-    mockPrisma.user.findUnique.mockResolvedValue(null);
-    const user = await service.findOne({ where: { id: userEntity.id } });
-    expect(user).toBeUndefined();
+  describe("should return undefined if user doesn't exist", () => {
+    it('at findOne method', async () => {
+      mockPrisma.user.findUnique.mockResolvedValue(null);
+      const user = await service.findOne({ where: { id: userEntity.id } });
+      expect(user).toBeUndefined();
+    });
+
+    it('at findOneByPhoneNumber method', async () => {
+      mockPrisma.user_Phone_Number.findUnique.mockResolvedValue(null);
+      const user = await service.findOneByPhoneNumber({
+        ddd: userEntity.phoneNumber.ddd,
+        ddi: userEntity.phoneNumber.ddi,
+        number: userEntity.phoneNumber.number,
+      });
+      expect(user).toBeUndefined();
+    });
   });
 
-  it("should throw an error if user phone number doesn't exist", async () => {
-    mockPrisma.user.findUnique.mockResolvedValue({
-      ...prismaUser,
-      User_Phone_Number: null,
+  describe("should throw an error if user phone number doesn't exist", () => {
+    it('at findOne method', async () => {
+      mockPrisma.user.findUnique.mockResolvedValue({
+        ...prismaUser,
+        User_Phone_Number: null,
+      });
+      await expect(
+        service.findOne({ where: { id: userEntity.id } }),
+      ).rejects.toThrowError("User doesn't have a phone number");
     });
-    await expect(
-      service.findOne({ where: { id: userEntity.id } }),
-    ).rejects.toThrowError("User doesn't have a phone number");
+
+    it('at findOneByPhoneNumber method', async () => {
+      mockPrisma.user_Phone_Number.findUnique.mockResolvedValue({
+        ...prismaUserPhoneNumber,
+        User: null,
+      });
+      await expect(
+        service.findOneByPhoneNumber({
+          ddd: userEntity.phoneNumber.ddd,
+          ddi: userEntity.phoneNumber.ddi,
+          number: userEntity.phoneNumber.number,
+        }),
+      ).rejects.toThrowError("Phone number doesn't have a user");
+    });
   });
 });

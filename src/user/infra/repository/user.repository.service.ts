@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma, User as PrismaUser, User_Phone_Number } from '@prisma/client';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import { User } from 'src/user/domain/entity/user.entity';
-import { PhoneNumberData } from 'src/user/domain/entity/value-objects';
+import { CreateUserPhoneNumberDTO } from 'src/user/domain/entity/value-objects';
 import { UserRepository } from 'src/user/domain/repository/user.repository';
 
 @Injectable()
@@ -64,7 +64,7 @@ export class UserRepositoryService implements UserRepository {
   }
 
   async findOneByPhoneNumber(
-    phoneNumber: PhoneNumberData,
+    phoneNumber: CreateUserPhoneNumberDTO,
   ): Promise<User | undefined> {
     const foundPhoneNumber = await this.prisma.user_Phone_Number.findUnique({
       where: {
