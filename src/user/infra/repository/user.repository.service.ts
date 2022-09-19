@@ -1,3 +1,4 @@
+import { InternalException } from '@infinity-js/core';
 import { Injectable } from '@nestjs/common';
 import { Prisma, User as PrismaUser, User_Phone_Number } from '@prisma/client';
 import { PrismaService } from 'src/common/prisma/prisma.service';
@@ -79,7 +80,10 @@ export class UserRepositoryService implements UserRepository {
     },
   ): User {
     if (!prismaUser.User_Phone_Number) {
-      throw new Error('User_Phone_Number is null');
+      throw new InternalException({
+        message: "User doesn't have a phone number",
+        portugueseMessage: 'Usuário não possui um número de telefone',
+      });
     }
 
     return User.instantiate({

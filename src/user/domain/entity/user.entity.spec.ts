@@ -1,25 +1,29 @@
 import { User } from './user.entity';
 import { faker } from '@faker-js/faker';
 
+export const makeFakeUserEntity = (): User => {
+  return User.instantiate({
+    id: faker.datatype.uuid(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    phoneNumber: {
+      ddd: faker.phone.number('##'),
+      ddi: faker.phone.number('##'),
+      isVerified: faker.datatype.boolean(),
+      number: faker.phone.number('#########'),
+    },
+    password: faker.internet.password(),
+    createdAt: faker.date.past().toISOString(),
+    updatedAt: faker.date.past().toISOString(),
+  });
+};
+
 describe('User entity', () => {
   let user: User;
 
   describe('instantiate', () => {
     beforeEach(() => {
-      user = User.instantiate({
-        id: faker.datatype.uuid(),
-        firstName: faker.name.firstName(),
-        lastName: faker.name.lastName(),
-        phoneNumber: {
-          ddd: faker.phone.number('##'),
-          ddi: faker.phone.number('##'),
-          isVerified: faker.datatype.boolean(),
-          number: faker.phone.number('#########'),
-        },
-        password: faker.internet.password(),
-        createdAt: faker.date.past().toISOString(),
-        updatedAt: faker.date.past().toISOString(),
-      });
+      user = makeFakeUserEntity();
     });
 
     it('should instantiate a user', () => {
