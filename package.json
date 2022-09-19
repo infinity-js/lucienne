@@ -76,7 +76,8 @@
     },
     "collectCoverageFrom": [
       "**/*.(t|j)s",
-      "!**/main.ts"
+      "!**/main.ts",
+      "!**/__mocks__/**"
     ],
     "moduleNameMapper": {
       "src/(.*)": "<rootDir>/$1"
