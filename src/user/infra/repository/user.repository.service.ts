@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Prisma, User as PrismaUser, User_Phone_Number } from '@prisma/client';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import { User } from 'src/user/domain/entity/user.entity';
+import { PhoneNumberData } from 'src/user/domain/entity/value-objects';
 import { UserRepository } from 'src/user/domain/repository/user.repository';
 
 @Injectable()
@@ -51,6 +52,7 @@ export class UserRepositoryService implements UserRepository {
       },
     });
   }
+
   async findOne(findOne: Prisma.UserFindUniqueArgs): Promise<User | undefined> {
     const prismaUser = await this.prisma.user.findUnique({
       ...findOne,
@@ -59,6 +61,27 @@ export class UserRepositoryService implements UserRepository {
       },
     });
     return prismaUser ? this.prismaUserToUserEntity(prismaUser) : undefined;
+  }
+
+  async findOneByPhoneNumber(
+    phoneNumber: PhoneNumberData,
+  ): Promise<User | undefined> {
+    const foundPhoneNumber = await this.prisma.user_Phone_Number.findUnique({
+      where: {
+        ddi_ddd_number: {
+          ddd: phoneNumber.ddd,
+          ddi: phoneNumber.ddi,
+          number: phoneNumber.number,
+        },
+      },
+      include: {
+        User: true,
+      },
+    });
+
+    return foundPhoneNumber
+      ? this.phoneNumberToUser(foundPhoneNumber)
+      : undefined;
   }
 
   async findMany(findMany: Prisma.UserFindManyArgs): Promise<User[]> {
@@ -98,6 +121,34 @@ export class UserRepositoryService implements UserRepository {
         ddi: prismaUser.User_Phone_Number.ddi,
         isVerified: prismaUser.User_Phone_Number.isVerified,
         number: prismaUser.User_Phone_Number.number,
+      },
+    });
+  }
+
+  phoneNumberToUser(
+    params: User_Phone_Number & {
+      User: PrismaUser | null;
+    },
+  ) {
+    if (!params.User) {
+      throw new InternalException({
+        message: "Phone number doesn't have a user",
+        portugueseMessage: 'Número de telefone não possui um usuário',
+      });
+    }
+
+    return User.instantiate({
+      id: params.User.id,
+      firstName: params.User.firstName,
+      lastName: params.User.lastName,
+      password: params.User.password,
+      createdAt: params.User.createdAt.toISOString(),
+      updatedAt: params.User.updatedAt.toISOString(),
+      phoneNumber: {
+        ddd: params.ddd,
+        ddi: params.ddi,
+        isVerified: params.isVerified,
+        number: params.number,
       },
     });
   }
