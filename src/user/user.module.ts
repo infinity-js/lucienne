@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
 import { HashingModule } from 'src/common/hashing/hashing.module';
-import { UserRepositoryService } from './infra/repository/user.repository.service';
-import { CreateUserService } from './services/create.service';
+import { infra } from './infra';
+import { restServices } from './rest-services';
+import { services } from './services';
+import { UserController } from './user.controller';
+import { UserService } from './user.service';
 
 @Module({
   imports: [HashingModule],
-  providers: [CreateUserService, UserRepositoryService],
+  providers: [...services, ...restServices, ...infra, UserService],
+  controllers: [UserController],
 })
 export class UserModule {}

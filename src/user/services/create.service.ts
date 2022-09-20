@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { HashingService } from 'src/common/hashing/hashing.service';
 import { User } from 'src/user/domain/entity/user.entity';
 import { CreateUserDTO } from 'src/user/domain/entity/user.entity.data';
-import { UserRepositoryService } from 'src/user/infra/repository/user.repository.service';
+import { UserRepositoryService } from 'src/user/infra/user.repository.service';
 
 export type CreateUserServiceParamsDTO = {
   data: CreateUserDTO;
