@@ -18,12 +18,12 @@ export class CreateUserRestServiceParamsDTO extends PickType(UserData, [
   })
   password!: string;
 
-  @Type(() => CreateUserPhoneNumberDTO)
-  @ValidateNested()
-  @IsObject()
   @ApiProperty({
     type: CreateUserPhoneNumberDTO,
   })
+  @Type(() => CreateUserPhoneNumberDTO)
+  @ValidateNested()
+  @IsObject()
   phoneNumber!: CreateUserPhoneNumberDTO;
 }
 

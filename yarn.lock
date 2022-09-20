@@ -569,16 +569,23 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@infinity-js/core@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.npmjs.org/@infinity-js/core/-/core-1.1.4.tgz"
-  integrity sha512-//37pAMuG6dwAcs/vvbtYX9OCdaJzgE4I5Yy13qhR+wUWrNsFndxTUxWaT8/wilBu/8sCmhQBpTrb4uRPY7I7Q==
+"@infinity-js/core@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@infinity-js/core/-/core-1.2.1.tgz#503911d4c11ff7d4bf2f828598c8d055e1525766"
+  integrity sha512-fQgGql7Ln+uZ0FzituIJkmojM+G0uUikNnzTfD1vJ8VkFrW0R+fgCa+XjLOx1HMbIdmWWspS+2s3/JE1d0uXIQ==
   dependencies:
-    "@nestjs/mapped-types" "1.1.0"
+    "@nestjs/swagger" "6.1.2"
     class-transformer "0.5.1"
     class-validator "0.13.2"
     tslib "2.4.0"
     uuid "9.0.0"
+
+"@infinity-js/nestjs@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@infinity-js/nestjs/-/nestjs-1.2.1.tgz#ef5592e842e5ca32a03778d9ac8d6f8f7bba191a"
+  integrity sha512-czoVRRTWnHYht04WP35FopxIwksmwNngWkNJb0DWFMhB4QvNul8C+GcJ1WFLmgWRVLG44ugE/ZDXyRp/dZSMTQ==
+  dependencies:
+    tslib "2.4.0"
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
@@ -944,9 +951,9 @@
   dependencies:
     path-to-regexp "0.2.5"
 
-"@nestjs/swagger@^6.1.2":
+"@nestjs/swagger@6.1.2":
   version "6.1.2"
-  resolved "https://registry.npmjs.org/@nestjs/swagger/-/swagger-6.1.2.tgz"
+  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-6.1.2.tgz#5eb9c134fc976f16c139ecaf80a7f02a5d33da46"
   integrity sha512-RU1DeTDyuN/lRXKFWaf7I9LYF34/ale3IIGeY3romAcXL/N9W0+50Ek3ou+Ajd5FqpLqzt7saYhnaQegVuU4UQ==
   dependencies:
     "@nestjs/mapped-types" "1.1.0"

@@ -1,3 +1,8 @@
+import {
+  HttpExceptionFilter,
+  InfinityExceptionFilter,
+} from '@infinity-js/nestjs';
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { writeFileSync } from 'fs';
@@ -7,6 +12,10 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true });
   const port = process.env.HTTP_PORT || 3000;
+
+  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalFilters(new HttpExceptionFilter());
+  app.useGlobalFilters(new InfinityExceptionFilter());
 
   await app.listen(port);
 
