@@ -24,8 +24,8 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@infinity-js/core": "^1.2.1",
-    "@infinity-js/nestjs": "^1.2.1",
+    "@infinity-js/core": "^1.2.3",
+    "@infinity-js/nestjs": "^1.2.3",
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
