@@ -1,11 +1,33 @@
-import { Injectable } from '@nestjs/common';
-import { ApiProperty, PickType } from '@nestjs/swagger';
+import { applyDecorators, Injectable } from '@nestjs/common';
 import { UserData } from '../domain/entity/user.entity.data';
 import { UserService } from '../user.service';
-import {} from '@nestjs/swagger';
 import { CreateUserPhoneNumberDTO } from '../domain/entity/value-objects';
-import { IsObject, Type, ValidateNested } from '@infinity-js/core';
+import {
+  ApiBadRequestResponse,
+  ApiCreatedResponse,
+  ApiInternalServerErrorResponse,
+  ApiProperty,
+  HttpExceptionContract,
+  IsObject,
+  PickType,
+  Type,
+  ValidateNested,
+} from '@infinity-js/core';
 
+export const CreateUserRestDocumentation = () =>
+  applyDecorators(
+    ApiCreatedResponse({
+      description: 'The user has been successfully created',
+    }),
+    ApiBadRequestResponse({
+      type: HttpExceptionContract,
+      description: 'Validation error or User already exists',
+    }),
+    ApiInternalServerErrorResponse({
+      type: HttpExceptionContract,
+      description: 'Internal server error',
+    }),
+  );
 export class CreateUserRestServiceParamsDTO extends PickType(UserData, [
   'firstName',
   'lastName',

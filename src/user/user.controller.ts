@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@infinity-js/core';
+import { Body, Controller, Post } from '@nestjs/common';
 import {
+  CreateUserRestDocumentation,
   CreateUserRestService,
   CreateUserRestServiceParamsDTO,
 } from './rest-services/create.rest-service';
@@ -11,7 +12,8 @@ export class UserController {
   constructor(private readonly createRestService: CreateUserRestService) {}
 
   @Post()
-  async create(@Body() body: CreateUserRestServiceParamsDTO) {
+  @CreateUserRestDocumentation()
+  create(@Body() body: CreateUserRestServiceParamsDTO) {
     return this.createRestService.execute(body);
   }
 }
