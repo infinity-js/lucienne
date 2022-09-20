@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { Prisma, User as PrismaUser, User_Phone_Number } from '@prisma/client';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import { makeFakeUserEntity } from 'test/unit/user/domain/user.entity.spec';
-import { UserRepositoryService } from 'src/user/infra/repository/user.repository.service';
+import { UserRepositoryService } from 'src/user/infra/user.repository.service';
 
 const mockPrisma = {
   user: {
