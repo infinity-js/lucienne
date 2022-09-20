@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import { Test, TestingModule } from '@nestjs/testing';
 import { HashingService } from 'src/common/hashing/hashing.service';
-import { UserRepositoryService } from 'src/user/infra/repository/user.repository.service';
+import { UserRepositoryService } from 'src/user/infra/user.repository.service';
 import {
   CreateUserService,
   CreateUserServiceParamsDTO,
