@@ -6,20 +6,20 @@ on:
       - master
 
 jobs:
-  # ci:
-  #   name: CI Pipeline
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions/setup-node@v2
-  #       with:
-  #         node-version: 14
-  #     - run: yarn install
-  #     - run: yarn test:cov
-  #     - run: yarn test:cov:integration
+  ci:
+    name: CI Pipeline
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - run: yarn install
+      - run: yarn test:cov
+      - run: yarn test:cov:integration
   cd:
     name: CD Pipeline
-    # needs: [ci]
+    needs: [ci]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

@@ -1,6 +1,6 @@
 {
   "name": "@infinity-js/lucienne",
-  "version": "0.0.1-test0",
+  "version": "0.0.1",
   "description": "Lucienne é um serviço de gestão de dados usuários globais das aplicações Infinity",
   "author": "White Angel <whiteangel.dev>",
   "private": true,
