@@ -569,10 +569,10 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@infinity-js/core@^1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@infinity-js/core/-/core-1.2.2.tgz#341851ec813b470b9fba72ebb2cbd7130c9ea30b"
-  integrity sha512-Eyu31UCPmXSfrUZN47EYWlXvUg9Z4v52+oLQddip6GJ2hyirGTXNWXh+4V2rIUfaLgrt6wy1YuhqrVE++2f+Kg==
+"@infinity-js/core@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@infinity-js/core/-/core-1.2.3.tgz#856c3ffda9c64178bc509a48e6d6ef900a55bfe1"
+  integrity sha512-Kb4AVNtlAj60cX4aOTq0zW+a70RMcaCSmpa9wl48qHoBU0nZIOsFltK+PLtHqvLzhPtLKA/6uQo7RVr9Dxh02A==
   dependencies:
     "@nestjs/swagger" "6.1.2"
     class-transformer "0.5.1"
@@ -580,10 +580,10 @@
     tslib "2.4.0"
     uuid "9.0.0"
 
-"@infinity-js/nestjs@^1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@infinity-js/nestjs/-/nestjs-1.2.2.tgz#9885bcb6b13dce5cae4600694af1b8c2330bc764"
-  integrity sha512-S8lukm6AuJLmYeBFKFRdkjibxA+n/EeuH/UVHIOIGdAkfm8N6IU8VpIyfp4NErT8seC4a2TpyFWTxNfKW/UP0g==
+"@infinity-js/nestjs@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@infinity-js/nestjs/-/nestjs-1.2.3.tgz#127d243a1bb9a8f6cd077482b0546f82231f0c5b"
+  integrity sha512-7b8Gsj7FidMIRKWySbTOLR3XgSUL7OLvMXsBRwdfWIlc5l/0IPryjTZPV+QGsn1UNbmv+NG0h+LKqkLyFuzoyA==
   dependencies:
     tslib "2.4.0"
 
