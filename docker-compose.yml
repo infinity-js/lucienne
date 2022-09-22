@@ -9,7 +9,7 @@ services:
       DATABASE_URL: mysql://root:root@database:3306/ms_lucienne?schema=public
       NODE_ENV: development
   database:
-    image: mariadb
+    image: mariadb:10.9.3
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: ms_lucienne
