@@ -25,9 +25,10 @@ async function bootstrap() {
     .setVersion('1.0')
     .addTag('Users');
 
-  if (process.env.NODE_ENV === 'development') {
-    swaggerConfigBuilding.addServer(`http://localhost:${port}`);
-  }
+  const documentationServer =
+    process.env.REST_API_DOCUMENTATION_SERVER || `http://localhost:${port}`;
+
+  swaggerConfigBuilding.addServer(documentationServer);
 
   const swaggerConfig = swaggerConfigBuilding.build();
 
