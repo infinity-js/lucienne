@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
-import { UserModule } from './user/user.module';
 import { PrismaModule } from './common/prisma/prisma.module';
+import { RabbitMQModule } from './common/rabbitmq/rabbitmq.module';
+import { UserModule } from './user/user.module';
 import { join } from 'path';
 
 @Module({
@@ -11,7 +12,9 @@ import { join } from 'path';
       serveRoot: '/api-docs',
     }),
     UserModule,
+    RabbitMQModule,
     PrismaModule,
   ],
+  controllers: [],
 })
 export class AppModule {}
